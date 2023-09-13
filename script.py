@@ -115,12 +115,12 @@ def output_modifier(string):
         pieces += [audio_array, silence.copy()]
     audio = np.array(np.concatenate(pieces), dtype="float32")
     time_label = int(time.time())
-    write_wav(f"extensions/bark_tts/generated/{shared.character}_{time_label}.wav", params['sample_rate'], audio)
+    write_wav(f"extensions/bark_tts/generated/{shared.args.character}_{time_label}.wav", params['sample_rate'], audio)
     autoplay = 'autoplay' if params['autoplay'] else ''
     if params['show_text']:
-        string = f'<audio src="file/extensions/bark_tts/generated/{shared.character}_{time_label}.wav" controls {autoplay}></audio><br>{ttstext}'
+        string = f'<audio src="file/extensions/bark_tts/generated/{shared.args.character}_{time_label}.wav" controls {autoplay}></audio><br>{ttstext}'
     else:
-        string = f'<audio src="file/extensions/bark_tts/generated/{shared.character}_{time_label}.wav" controls {autoplay}></audio>'
+        string = f'<audio src="file/extensions/bark_tts/generated/{shared.args.character}_{time_label}.wav" controls {autoplay}></audio>'
     
     shared.args.no_stream = streaming_state
     return string
